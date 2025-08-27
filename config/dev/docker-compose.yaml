@@ -1,0 +1,26 @@
+version: "3.3"
+   
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - "${DB_PORT}:5432"   
+
+  nginx:
+    image: fsiai/nginx_django_angular:0.5.0
+    ports:
+      - "${NGINX_MAIN_PORT}:443"
+    volumes:
+      - /data/admin/CERTIFICATES/:/etc/CA/
+      - ${DJANGO_MEDIA_PATH}:/var/www/files
+    environment:
+      - DJANGO_HOST=frazulx0321.fr.deloitte.com
+      - DJANGO_PORT=${DJANGO_PORT}
+      - ANGULAR_HOST=frazulx0321.fr.deloitte.com
+      - ANGULAR_PORT=${ANGULAR_PORT}
+      - SSL_CERT=frazulx0321.fr.deloitte.com.crt
+      - SSL_KEY=frazulx0321.fr.deloitte.com.decrypted.key

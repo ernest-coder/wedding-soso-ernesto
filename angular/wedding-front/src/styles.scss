@@ -1,0 +1,291 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+
+$dttl-palette: (
+  50 : #f0f7e5,
+  100 : #dbebbe,
+  200 : #c3de92,
+  300 : #aad066,
+  400 : #98c646,
+  500 : #86bc25,
+  600 : #7eb621,
+  700 : #73ad1b,
+  800 : #69a516,
+  900 : #56970d,
+  A100 : #e2ffc6,
+  A200 : #c8ff93,
+  A400 : #aeff60,
+  A700 : #a1ff47,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+$my-primary: mat.define-palette(mat.$gray-palette);
+$my-accent: mat.define-palette($dttl-palette);
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ )
+));
+
+@include mat.all-component-themes($my-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Overriding material default typography config
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+.material-symbols-sharp {
+  user-select: none;
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.material-symbols-outlined {
+  user-select: none;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
+// fix angular material 'outline' input
+// see https://stackoverflow.com/q/75535246
+.mdc-notched-outline__notch
+{
+  border-right: none;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+.scrollbar-light {
+  scrollbar-width: auto;
+  scrollbar-color: #d9d9d9 transparent;
+  scrollbar-gutter: stable;
+}
+
+/* Chrome, Edge, and Safari */
+.scrollbar-light::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-light::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-light::-webkit-scrollbar-thumb {
+  background-color: #d9d9d9;
+  border-radius: 0px;
+  border: none;
+}
+
+.invisible-scroll {
+  scrollbar-width: 0px;
+}
+
+.invisible-scroll::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.scrollbar-light::-webkit-scrollbar-thumb:hover {
+  background-color: #cdcdcd;
+}
+
+.scrollbar-style {
+  --scrollbar-border-radius: 0px !important;
+  --scrollbar-padding: 0px !important;
+  --scrollbar-size: 8px !important;
+}
+
+@layer utilities {
+  .bg-stripes {
+    background-image: linear-gradient(45deg, #ffffff00 35.71%, #00000010 35.71%, #00000010 50%, #ffffff00 50%, #ffffff00 85.71%, #00000010 85.71%, #00000010 100%) !important;
+    background-size: 20.00px 20.00px;
+  }
+}
+
+.sideways-right {
+  writing-mode: vertical-lr;
+}
+
+.sideways-left {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+.mat-drawer-inner-container {
+  @extend .scrollbar-light;
+  scrollbar-gutter: auto;
+}
+
+.mat-mdc-form-field * {
+  border-radius: 0 !important;
+}
+
+.white-mat-toggle label {
+  color: white;
+}
+
+.ng-scroll-content {
+  width: 100%;
+}
+
+.cdk-drag-preview{
+  background: white  !important;
+  color: black !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-preview *{
+  background: transparent !important;
+  color: black !important;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+  height: 1.75rem;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging :not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.markdown-content-md {
+
+  @apply text-base;
+
+  h1 {
+    @apply text-2xl font-bold mb-4;
+  }
+
+  h2 {
+    @apply text-xl font-semibold mb-3;
+  }
+
+  h3 {
+    @apply text-lg font-semibold mb-2;
+  }
+
+  h4 {
+    @apply text-base font-semibold mb-2;
+  }
+
+  p {
+    @apply mb-4 text-base text-gray-700;
+  }
+
+  pre {
+    @apply text-base
+  }
+}
+
+.markdown-content-sm {
+
+  @apply text-sm;
+
+  h1 {
+    @apply text-lg font-bold mb-4;
+  }
+
+  h2 {
+    @apply text-base font-semibold mb-3;
+  }
+
+  h3 {
+    @apply text-sm font-semibold mb-2;
+  }
+
+  h4 {
+    @apply text-sm font-semibold mb-2;
+  }
+
+  p {
+    @apply mb-4 text-sm text-gray-700;
+  }
+
+  pre {
+    @apply text-sm
+  }
+}
+
+.markdown-content-sm, .markdown-content-md {
+  ul {
+    @apply list-disc ml-6 mb-4;
+  }
+
+  ol {
+    @apply list-decimal ml-6 mb-4;
+  }
+
+  a {
+    @apply text-blue-500 underline;
+  }
+
+  a:hover {
+    @apply text-blue-700;
+  }
+
+  caption {
+    @apply text-gray-600 italic text-sm mb-2;
+  }
+
+  table {
+    @apply w-full border-collapse border border-gray-300 my-4 text-sm;
+  }
+
+  th {
+    @apply bg-gray-100 border border-gray-300 px-4 py-2 text-left font-semibold;
+  }
+
+  td {
+    @apply border border-gray-300 px-4 py-2 text-gray-800;
+  }
+
+  tr:nth-child(even) {
+    @apply bg-gray-50;
+  }
+
+  tr:hover {
+    @apply bg-gray-100;
+  }
+}
+
