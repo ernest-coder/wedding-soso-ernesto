@@ -12,12 +12,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MarkdownModule} from "ngx-markdown";
+import { HomeComponent } from './shared/components/home/home.component';
+import { TopBarComponent } from './shared/components/top-bar/top-bar.component';
 
 registerLocaleData(localeFr)
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    TopBarComponent,
   ],
   imports: [
     BrowserModule,

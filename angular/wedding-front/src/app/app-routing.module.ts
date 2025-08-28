@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './shared/components/home/home.component';
 
 const routes: Routes = [
+  {path: '', component: HomeComponent},
 ];
 
 @NgModule({
   imports: [
-    // Setting to make route changes always scroll to top of page
-    RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'enabled',
-      bindToComponentInputs: true,
-      paramsInheritanceStrategy: 'always' }),
-  ],
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
