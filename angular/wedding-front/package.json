@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@sanity/diff-match-patch": "^3.1.1",
+    "@supabase/supabase-js": "^2.57.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "angular2-draggable": "^16.0.0",
     "leader-line-new": "^1.1.9",
