@@ -90,14 +90,7 @@ export class GameComponent implements AfterViewInit, OnDestroy {
         this.game.jump();
       }
       event.preventDefault();
-    } else if (event.key === 'ArrowDown') {
-      this.game.setDuck(true);
-    } else if (event.key === 'KeyR') {
-      this.game.restart();
-    } else if (event.key === 'KeyL') { // quick key to show leaderboard
-      this.refreshLeaderboard();
-      // (we keep the modal disabled; leaderboard is visible in UI anyway)
-    }
+    } 
   }
 
   @HostListener('window:keyup', ['$event'])

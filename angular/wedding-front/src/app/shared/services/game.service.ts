@@ -258,9 +258,9 @@ export class GameService {
       ctx.fillStyle = '#fff';
       ctx.textAlign = 'center';
       ctx.font = '28px ui-sans-serif, system-ui';
-      ctx.fillText('GAME OVER', this.width / 2, this.height / 2 - 10);
+      ctx.fillText('PARTIE TERMINÉE', this.width / 2, this.height / 2 - 10);
       ctx.font = '14px ui-sans-serif, system-ui';
-      ctx.fillText('Restart to play again', this.width / 2, this.height / 2 + 16);
+      ctx.fillText('Appuyez sur Espace ou cliquez sur Rejouer pour rejouer', this.width / 2, this.height / 2 + 16);
       ctx.textAlign = 'start';
     }
   }
