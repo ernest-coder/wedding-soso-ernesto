@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DressCodeComponent } from './shared/components/dress-code/dress-code.component';
 import { GameComponent } from './shared/components/game/game.component';
 import { HomeComponent } from './shared/components/home/home.component';
+import { VoyageComponent } from './shared/components/voyage/voyage.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'dress-code',
     component: DressCodeComponent
+  },
+  {
+    path: 'voyage',
+    component: VoyageComponent
   },
 ];
 

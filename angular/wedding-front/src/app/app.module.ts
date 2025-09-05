@@ -17,6 +17,7 @@ import { TopBarComponent } from './shared/components/top-bar/top-bar.component';
 import { GameComponent } from './shared/components/game/game.component';
 import { HorizonComponent } from './shared/components/horizon/horizon.component';
 import { DressCodeComponent } from './shared/components/dress-code/dress-code.component';
+import { VoyageComponent } from './shared/components/voyage/voyage.component';
 
 registerLocaleData(localeFr)
 
@@ -28,6 +29,7 @@ registerLocaleData(localeFr)
     GameComponent,
     HorizonComponent,
     DressCodeComponent,
+    VoyageComponent,
   ],
   imports: [
     BrowserModule,
