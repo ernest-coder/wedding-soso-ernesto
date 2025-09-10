@@ -157,20 +157,20 @@ export class GameService {
     // physics
     this.trex.vy += this.gravity * 0.6;
     this.trex.y += this.trex.vy;
-
+  
     if (this.trex.y >= this.groundY - this.trex.h) {
       this.trex.y = this.groundY - this.trex.h;
       this.trex.vy = 0;
       this.trex.onGround = true;
     }
-
-    // spawn obstacles (use image natural sizes scaled to a reasonable height)
+  
+    // spawn obstacles faster
     this.lastSpawn += 1;
-    if (this.lastSpawn > 120 + Math.random() * 150) {
+    const spawnInterval = Math.max(50, 120 - Math.floor(this.speed)); // faster spawn as speed increases
+    if (this.lastSpawn > spawnInterval + Math.random() * 50) {
       let h: number;
       let w: number;
       if (this.useImageForObstacle && this.obstacleImg.naturalHeight > 0) {
-        // pick a desired obstacle height randomly between 24 and 56
         const desiredH = 24 + Math.random() * 32;
         const scale = desiredH / this.obstacleImg.naturalHeight;
         h = Math.round(this.obstacleImg.naturalHeight * scale);
@@ -182,17 +182,17 @@ export class GameService {
       this.obs.spawn(this.width + 20, this.groundY - h, w, h);
       this.lastSpawn = 0;
     }
-
+  
     // move obstacles
     this.obs.step(this.speed);
-
-    // difficulty
-    if (Math.random() < 0.01) this.speed += 0.01;
-
+  
+    // increase speed faster
+    this.speed += 0.02; // instead of tiny random increase
+  
     // score
     this.score += 0.1 * this.speed;
     this.scoreSvc.setScore(Math.floor(this.score));
-
+  
     // collisions -> END GAME
     for (const o of this.obs.obstacles) {
       if (this.collides(this.trex, o)) {
@@ -201,6 +201,7 @@ export class GameService {
       }
     }
   }
+  
 
   private endGame() {
     this.stop();

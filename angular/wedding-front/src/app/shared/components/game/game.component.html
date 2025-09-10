@@ -8,7 +8,7 @@
         </div>
   
         <div class="border  p-2 bg-gradient-to-b from-white to-zinc-50 relative">
-          <canvas #gameCanvas class="w-full" (touchstart)="onTouchStart($event)"></canvas>
+          <canvas #gameCanvas class="w-full"></canvas>
   
           <div *ngIf="!assetsLoaded" class="absolute inset-0 flex items-center justify-center bg-white/80">
             <div class="text-sm">Chargement des ressources…</div>

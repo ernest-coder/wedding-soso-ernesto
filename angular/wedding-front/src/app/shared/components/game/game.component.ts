@@ -48,6 +48,28 @@ export class GameComponent implements AfterViewInit, OnDestroy {
     this.game.stop();
   }
 
+  @HostListener('document:click', ['$event'])
+  onClickAnywhere(event: MouseEvent) {
+    this.handleJump();
+  }
+  
+  @HostListener('document:touchstart', ['$event'])
+  onTouchAnywhere(event: TouchEvent) {
+    this.handleJump();
+  }
+
+  private handleJump() {
+    if (this.showModal) return; // don't allow jumps while entering name
+  
+    if (this.gameOver) {
+      this.game.restart();
+      return;
+    }
+    if (!this.game.running) this.game.start();
+    this.game.jump();
+  }
+  
+
   private async onGameOverChanged(v: boolean) {
     this.gameOver = v;
     if (v) {
@@ -83,6 +105,12 @@ export class GameComponent implements AfterViewInit, OnDestroy {
   @HostListener('window:keydown', ['$event'])
   onKey(event: KeyboardEvent) {
     if (event.code === 'Space') {
+      if (this.showModal) {
+        // prevent restarting while modal is open
+        event.preventDefault();
+        return;
+      }
+  
       if (this.gameOver) {
         this.game.restart();
       } else {
@@ -98,13 +126,4 @@ export class GameComponent implements AfterViewInit, OnDestroy {
     if (event.key === 'ArrowDown') this.game.setDuck(false);
   }
 
-  onTouchStart(e: TouchEvent) {
-    e.preventDefault();
-    if (this.gameOver) {
-      this.game.restart();
-      return;
-    }
-    if (!this.game.running) this.game.start();
-    this.game.jump();
-  }
 }
