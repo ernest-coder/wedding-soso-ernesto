@@ -19,6 +19,11 @@ import { HorizonComponent } from './shared/components/horizon/horizon.component'
 import { DressCodeComponent } from './shared/components/dress-code/dress-code.component';
 import { VoyageComponent } from './shared/components/voyage/voyage.component';
 import { WeddingListComponent } from './shared/components/wedding-list/wedding-list.component';
+import { ProgramComponent } from './shared/components/program/program.component';
+import { SejourComponent } from './shared/components/sejour/sejour.component';
+import { RsvpComponent } from './shared/components/rsvp/rsvp.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FooterComponent } from './shared/services/footer/footer.component';
 
 registerLocaleData(localeFr)
 
@@ -32,6 +37,10 @@ registerLocaleData(localeFr)
     DressCodeComponent,
     VoyageComponent,
     WeddingListComponent,
+    ProgramComponent,
+    SejourComponent,
+    RsvpComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +54,8 @@ registerLocaleData(localeFr)
     MatSidenavModule,
     MatToolbarModule,
     MatSlideToggleModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: "fr-FR"}
