@@ -2,15 +2,17 @@
     "version": 2,
     "builds": [
       {
-        "src": "angular/wedding-front/dist/wedding-front/**",
-        "use": "@vercel/static"
+        "src": "angular/wedding-front/angular.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "angular/wedding-front/dist/wedding-front"
+        }
       }
     ],
     "routes": [
       {
         "src": "/.*",
-        "dest": "/angular/wedding-front/dist/wedding-front/index.html"
+        "dest": "/index.html"
       }
     ]
-  }
-  
+}
