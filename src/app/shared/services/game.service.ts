@@ -96,17 +96,30 @@ export class GameService {
   }
 
   attachCanvas(canvas: HTMLCanvasElement) {
+    // Get container width (full screen on mobile, max 800px on desktop)
+    const containerWidth = canvas.parentElement?.clientWidth || window.innerWidth;
+    const scale = containerWidth / 800; // base width is 800
+  
+    this.width = containerWidth;
+    this.height = 200 * scale; // keep aspect ratio
+  
     canvas.width = this.width;
     canvas.height = this.height;
     this.ctx = canvas.getContext('2d')!;
+  
+    // Scale game elements
+    this.groundY = Math.round(140 * scale);
+    this.trex.w = Math.round(44 * scale);
+    this.trex.h = Math.round(40 * scale);
+    this.trex.x = Math.round(50 * scale);
+  
     this.reset();
-
-    // start loading assets (non-blocking). UI can subscribe to assetsLoaded$
+  
     this.loadAssets().then(() => {
-      // adjust trex vertical position after image dimensions maybe changed
       this.trex.y = this.groundY - this.trex.h;
     });
   }
+  
 
   reset() {
     this.trex.y = this.groundY - this.trex.h;
@@ -170,14 +183,15 @@ export class GameService {
     if (this.lastSpawn > spawnInterval + Math.random() * 50) {
       let h: number;
       let w: number;
+      const scale = this.width / 800;
       if (this.useImageForObstacle && this.obstacleImg.naturalHeight > 0) {
-        const desiredH = 24 + Math.random() * 32;
-        const scale = desiredH / this.obstacleImg.naturalHeight;
-        h = Math.round(this.obstacleImg.naturalHeight * scale);
-        w = Math.round(this.obstacleImg.naturalWidth * scale);
+        const desiredH = (24 + Math.random() * 32) * scale;
+        const scaleImg = desiredH / this.obstacleImg.naturalHeight;
+        h = Math.round(this.obstacleImg.naturalHeight * scaleImg);
+        w = Math.round(this.obstacleImg.naturalWidth * scaleImg);
       } else {
-        h = 30 + Math.random() * 40;
-        w = 12 + Math.random() * 20;
+        h = (30 + Math.random() * 40) * scale;
+        w = (12 + Math.random() * 20) * scale;
       }
       this.obs.spawn(this.width + 20, this.groundY - h, w, h);
       this.lastSpawn = 0;
@@ -247,22 +261,28 @@ export class GameService {
       }
     }
 
-    // score HUD
-    ctx.font = '18px ui-sans-serif, system-ui';
+    // Score HUD (scaled font size)
+    const scale = this.width / 800;
+    ctx.font = `${Math.round(18 * scale)}px ui-sans-serif, system-ui`;
     ctx.fillStyle = '#0f172a';
-    ctx.fillText(String(Math.floor(this.score)).padStart(5, '0'), this.width - 100, 30);
+    ctx.fillText(String(Math.floor(this.score)).padStart(5, '0'), this.width - 100 * scale, 30 * scale);
 
-    // GAME OVER overlay
+    // Game Over overlay
     if (this._gameOver$.value) {
       ctx.fillStyle = 'rgba(0,0,0,0.5)';
       ctx.fillRect(0, 0, this.width, this.height);
       ctx.fillStyle = '#fff';
       ctx.textAlign = 'center';
-      ctx.font = '28px ui-sans-serif, system-ui';
-      ctx.fillText('PARTIE TERMINÉE', this.width / 2, this.height / 2 - 10);
-      ctx.font = '14px ui-sans-serif, system-ui';
-      ctx.fillText('Appuyez sur Espace ou cliquez sur Rejouer pour rejouer', this.width / 2, this.height / 2 + 16);
+      ctx.font = `${Math.round(28 * scale)}px ui-sans-serif, system-ui`;
+      ctx.fillText('PARTIE TERMINÉE', this.width / 2, this.height / 2 - 10 * scale);
+      ctx.font = `${Math.round(14 * scale)}px ui-sans-serif, system-ui`;
+      ctx.fillText(
+        'Appuyez sur Espace ou cliquez pour rejouer',
+        this.width / 2,
+        this.height / 2 + 16 * scale
+      );
       ctx.textAlign = 'start';
     }
+
   }
 }
