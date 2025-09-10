@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "angular/wedding-front/angular.json",
+        "src": "angular/wedding-front/package.json",
         "use": "@vercel/static-build",
         "config": {
           "distDir": "angular/wedding-front/dist/wedding-front"
@@ -16,4 +16,4 @@
       }
     ]
 }
-
+  
