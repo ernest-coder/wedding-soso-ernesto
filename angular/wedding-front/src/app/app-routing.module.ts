@@ -5,6 +5,7 @@ import { DressCodeComponent } from './shared/components/dress-code/dress-code.co
 import { GameComponent } from './shared/components/game/game.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { VoyageComponent } from './shared/components/voyage/voyage.component';
+import { WeddingListComponent } from './shared/components/wedding-list/wedding-list.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'voyage',
     component: VoyageComponent
+  },
+  {
+    path: 'liste-de-mariage',
+    component: WeddingListComponent
   },
 ];
 

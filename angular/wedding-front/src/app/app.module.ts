@@ -18,6 +18,7 @@ import { GameComponent } from './shared/components/game/game.component';
 import { HorizonComponent } from './shared/components/horizon/horizon.component';
 import { DressCodeComponent } from './shared/components/dress-code/dress-code.component';
 import { VoyageComponent } from './shared/components/voyage/voyage.component';
+import { WeddingListComponent } from './shared/components/wedding-list/wedding-list.component';
 
 registerLocaleData(localeFr)
 
@@ -30,6 +31,7 @@ registerLocaleData(localeFr)
     HorizonComponent,
     DressCodeComponent,
     VoyageComponent,
+    WeddingListComponent,
   ],
   imports: [
     BrowserModule,
